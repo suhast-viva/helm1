@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "payout.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: payout-frontend
+  template:
+    metadata:
+      annotations:
+        # This forces a pod restart if the config changes
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      labels:
+        app: payout-frontend
+    spec:
+      containers:
+        - name: payout-frontend
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          # Injects all variables from the ConfigMap at once
+          envFrom:
+            - configMapRef:
+                name: {{ include "payout.fullname" . }}-config
