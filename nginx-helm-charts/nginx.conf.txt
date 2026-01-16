@@ -1,0 +1,15 @@
+server {
+    listen 80;
+
+    # Frontend
+    location / {
+        proxy_pass http://payout-frontend:3000;
+    }
+
+    # Backend
+    location /api/ {
+        proxy_pass http://payout-api:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}

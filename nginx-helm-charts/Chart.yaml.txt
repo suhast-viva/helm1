@@ -1,0 +1,6 @@
+apiVersion: v2
+name: my-nginx-proxy
+description: A Helm chart for Nginx reverse proxying to Payout services
+type: application
+version: 0.1.0
+appVersion: "1.25.0" # This refers to the Nginx version
