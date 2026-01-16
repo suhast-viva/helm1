@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: payout-api
-  tag: "v11"
+  repository: nginx
+  tag: "alpine"
   pullPolicy: IfNotPresent
 
 service:
@@ -27,4 +27,5 @@ secrets:
   S0_SECRET_KEY: ""
   KEYCLOAK_PASSWORD: ""
   RAND_STR_512_B64: ""
+
   # Add others from your list here...
