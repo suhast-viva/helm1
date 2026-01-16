@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: payout-api
+  tag: "v11"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+# Non-sensitive variables
+config:
+  POSTGRESQL_HOST: "your-db-host"
+  POSTGRESQL_PORT: "5432"
+  POSTGRESQL_DATABASE_NAME: "payout_db"
+  MAIL_PORT: "25"
+  SERVICE_DISCOVERY_DOMAIN: ""
+  ALLOWED_HOSTS: "*"
+  APP_DOMAIN: ""
+
+# Sensitive variables
+secrets:
+  POSTGRESQL_USERNAME: "admin"
+  POSTGRESQL_PASSWORD: "password"
+  OPENID_CLIENT_SECRET: ""
+  S0_SECRET_KEY: ""
+  KEYCLOAK_PASSWORD: ""
+  RAND_STR_512_B64: ""
+  # Add others from your list here...

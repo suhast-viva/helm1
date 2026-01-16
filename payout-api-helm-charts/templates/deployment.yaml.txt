@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "payout-api.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: payout-api
+  template:
+    metadata:
+      labels:
+        app: payout-api
+    spec:
+      containers:
+        - name: payout-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: {{ include "payout-api.fullname" . }}-config
+            - secretRef:
+                name: {{ include "payout-api.fullname" . }}-secret
