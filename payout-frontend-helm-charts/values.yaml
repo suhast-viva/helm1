@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: payout-frontend
-  tag: "v4"
+  repository: nginx
+  tag: "alpine"
   pullPolicy: IfNotPresent
 
 service:
@@ -16,4 +16,5 @@ config:
   NEXT_PUBLIC_KEYCLOAK_REALM: "your-realm"
   NEXT_PUBLIC_KEYCLOAK_URL: "https://auth.example.com"
   NEXT_PUBLIC_API_ENDPOINT: "https://api.example.com"
+
   NEXT_PUBLIC_MLSS_PROGRAM_ID: "program-123"
