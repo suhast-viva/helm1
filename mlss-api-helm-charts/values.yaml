@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8081
+
+# Non-sensitive variables
+config:
+  MLSS_MSSQL_HOST: "test"
+  MLSS_MSSQL_PORT:  "1234"
+  MLSS_MSSQL_DATABASE_NAME: ""
+  KEYCLOAK_AUTH_SERVER_URL: ""
+
+# Sensitive variables
+secrets:
+  MLSS_MSSQL_USERNAME: "admin"
+  MLSS_MSSQL_PASSWORD: "password"
+
+  # Add others from your list here...

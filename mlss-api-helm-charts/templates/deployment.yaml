@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mlss-api.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: mlss-api
+  template:
+    metadata:
+      labels:
+        app: mlss-api
+    spec:
+      containers:
+        - name: mlss-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: {{ include "mlss-api.fullname" . }}-config
+            - secretRef:
+                name: {{ include "mlss-api.fullname" . }}-secret

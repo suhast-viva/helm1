@@ -1,0 +1,14 @@
+apiVersion: v2
+name: mlss-api
+description: A Helm chart for the MLSS API microservice
+type: application
+
+# This is the version of the CHART itself (increment this when changing templates)
+version: 0.1.0
+
+# This is the version of the APPLICATION (from your docker image payout-api:v11)
+appVersion: "11"
+
+maintainers:
+  - name: DevOps Team
+    email: devops@yourdomain.com
