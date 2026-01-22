@@ -16,9 +16,10 @@ spec:
         - name: mlss-api
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 8081
+            - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: {{ include "mlss-api.fullname" . }}-config
             - secretRef:
+
                 name: {{ include "mlss-api.fullname" . }}-secret
