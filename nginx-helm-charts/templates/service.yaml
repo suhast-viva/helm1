@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "nginx.fullname" . }}
   labels:
-    {{- include "nginx.labels" . | nindent 4 }}
+    app: nginx
 spec:
   # Using ClusterIP as requested previously
   type: {{ .Values.service.type | default "ClusterIP" }}
@@ -14,4 +14,5 @@ spec:
       name: http
   selector:
     # This must match the labels in deployment.yaml
+
     app: nginx-proxy
