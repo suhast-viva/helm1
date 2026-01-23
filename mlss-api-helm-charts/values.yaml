@@ -5,6 +5,9 @@ image:
   tag: "alpine"
   pullPolicy: IfNotPresent
 
+imagePullSecrets:
+  - name: my-image-secret
+
 service:
   type: ClusterIP
   port: 8080
